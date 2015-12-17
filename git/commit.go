@@ -1,7 +1,7 @@
 package git
 
 import (
-	"fmt"
+	// "fmt"
 	"os/exec"
 )
 
