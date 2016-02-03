@@ -5,14 +5,14 @@ import (
 	"os/exec"
 )
 
-func Checkout(localWorkDir, branchName string, newBranch bool) (string, error) {
+func Checkout(gitBinary, localWorkDir, branchName string, newBranch bool) (string, error) {
 	// fmt.Printf("in Checkout method.\n") // debug
 
 	// initialize checkout command
 	var checkoutCommand *exec.Cmd
 	if newBranch == true {
 		checkoutCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"checkout",
@@ -21,7 +21,7 @@ func Checkout(localWorkDir, branchName string, newBranch bool) (string, error) {
 		)
 	} else {
 		checkoutCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"checkout",

@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func Clone(url, destinationDirectory string, cleanup bool) (string, error) {
+func Clone(gitBinary, url, destinationDirectory string, cleanup bool) (string, error) {
 	// fmt.Printf("in Clone method.\n") // debug
 
 	// perform cleanup
@@ -23,7 +23,7 @@ func Clone(url, destinationDirectory string, cleanup bool) (string, error) {
 
 	// initialize clone command
 	cloneCommand := exec.Command(
-		"/usr/local/bin/git",
+		gitBinary,
 		"clone",
 		url,
 		destinationDirectory,

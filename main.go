@@ -18,9 +18,11 @@ func main() {
 	cloneRepository := "http://github.com/maxgarvey/junkZone"
 	cloneRepository = "ssh://git@stash.nikedev.com/zzar/junkzone.git" // this one for nike
 
+	gitBinary := "/usr/local/bin/git"
+
 	localWorkDir := "/Users/mgarve/go/src/github.com/maxgarvey/gogitter/junkZone"
 	cleanup := false
-	cloneOutput, err := git.Clone(cloneRepository, localWorkDir, cleanup)
+	cloneOutput, err := git.Clone(gitBinary, cloneRepository, localWorkDir, cleanup)
 	if err != nil {
 		fmt.Printf(
 			"error doing clone: \n%s\n",
@@ -35,7 +37,7 @@ func main() {
 	// perform a git checkout
 	checkoutBranch := "master"
 	newBranch := false
-	checkoutOutput, err := git.Checkout(localWorkDir, checkoutBranch, newBranch)
+	checkoutOutput, err := git.Checkout(gitBinary, localWorkDir, checkoutBranch, newBranch)
 	if err != nil {
 		fmt.Printf(
 			"error during checkout:\n%s\n",
@@ -49,7 +51,7 @@ func main() {
 
 	// perform a git fetch
 	branchesOfInterest := "--all"
-	fetchOutput, err := git.Fetch(localWorkDir, branchesOfInterest)
+	fetchOutput, err := git.Fetch(gitBinary, localWorkDir, branchesOfInterest)
 	if err != nil {
 		fmt.Printf(
 			"error during fetch:\n%s\n",
@@ -65,7 +67,7 @@ func main() {
 	branchName := "branch"
 	deleteBranch := false
 	newBranch = true
-	branchOutput, err := git.Branch(localWorkDir, branchName, deleteBranch, newBranch)
+	branchOutput, err := git.Branch(gitBinary, localWorkDir, branchName, deleteBranch, newBranch)
 	if err != nil {
 		fmt.Printf(
 			"error during branch:\n%s\n",
@@ -77,7 +79,7 @@ func main() {
 		branchOutput,
 	)
 	// checkout the git branch
-	checkoutOutput, err = git.Checkout(localWorkDir, branchName, false)
+	checkoutOutput, err = git.Checkout(gitBinary, localWorkDir, branchName, false)
 	if err != nil {
 		fmt.Printf(
 			"error during checkout:\n%s\n",
@@ -96,6 +98,7 @@ func main() {
 
 	// perform a git add
 	addOutput, err := git.Add(
+		gitBinary,
 		localWorkDir,
 		localWorkDir+"/a.txt",
 	)
@@ -112,7 +115,7 @@ func main() {
 
 	// perform a git commit
 	commitMessage := "my commit message"
-	commmitOutput, err := git.Commit(localWorkDir, commitMessage)
+	commmitOutput, err := git.Commit(gitBinary, localWorkDir, commitMessage)
 	if err != nil {
 		fmt.Printf(
 			"error during commit:\n%s\n",
@@ -130,7 +133,7 @@ func main() {
 	pushBranch := branchName
 	dryRun := false
 	deleteBoo := true
-	pushOutput, err := git.Push(localWorkDir, remote, pushBranch, dryRun, deleteBoo)
+	pushOutput, err := git.Push(gitBinary, localWorkDir, remote, pushBranch, dryRun, deleteBoo)
 	if err != nil {
 		fmt.Printf(
 			"error during push:\n%s\n",
@@ -143,7 +146,7 @@ func main() {
 	)
 
 	deleteBoo = false
-	pushOutput, err = git.Push(localWorkDir, remote, pushBranch, dryRun, deleteBoo)
+	pushOutput, err = git.Push(gitBinary, localWorkDir, remote, pushBranch, dryRun, deleteBoo)
 	if err != nil {
 		fmt.Printf(
 			"error during push:\n%s\n",

@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func Push(localWorkDir, remote, branchName string, dryRun, deleteBoo bool) (string, error) {
+func Push(gitBinary, localWorkDir, remote, branchName string, dryRun, deleteBoo bool) (string, error) {
 	// fmt.Printf("in Push method.\n") // debug
 
 	if deleteBoo == true {
@@ -16,7 +16,7 @@ func Push(localWorkDir, remote, branchName string, dryRun, deleteBoo bool) (stri
 	var pushCommand *exec.Cmd
 	if dryRun == true {
 		pushCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"push",
@@ -26,7 +26,7 @@ func Push(localWorkDir, remote, branchName string, dryRun, deleteBoo bool) (stri
 		)
 	} else {
 		pushCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"push",

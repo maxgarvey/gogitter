@@ -5,14 +5,14 @@ import (
 	"os/exec"
 )
 
-func Branch(localWorkDir, branchName string, deleteBranch, newBranch bool) (string, error) {
+func Branch(gitBinary, localWorkDir, branchName string, deleteBranch, newBranch bool) (string, error) {
 	// fmt.Printf("in Branch method.\n") // debug
 
 	// initialize checkout command
 	var branchCommand *exec.Cmd
 	if deleteBranch == true {
 		branchCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"branch",
@@ -21,7 +21,7 @@ func Branch(localWorkDir, branchName string, deleteBranch, newBranch bool) (stri
 		)
 	} else if newBranch == true {
 		branchCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"branch",
@@ -29,7 +29,7 @@ func Branch(localWorkDir, branchName string, deleteBranch, newBranch bool) (stri
 		)
 	} else {
 		branchCommand = exec.Command(
-			"/usr/local/bin/git",
+			gitBinary,
 			"-C",
 			localWorkDir,
 			"branch",

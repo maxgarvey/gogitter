@@ -5,12 +5,12 @@ import (
 	"os/exec"
 )
 
-func Commit(localWorkDir, commitMessage string) (string, error) {
+func Commit(gitBinary, localWorkDir, commitMessage string) (string, error) {
 	// fmt.Printf("in Commit method.\n") // debug
 
 	// initialize commit command
 	commitCommand := exec.Command(
-		"/usr/local/bin/git",
+		gitBinary,
 		"-C",
 		localWorkDir,
 		"commit",

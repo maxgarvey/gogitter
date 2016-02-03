@@ -5,12 +5,12 @@ import (
 	"os/exec"
 )
 
-func Fetch(localWorkDir, branches string) (string, error) {
+func Fetch(gitBinary, localWorkDir, branches string) (string, error) {
 	// fmt.Printf("in Fetch method.\n") // debug
 
 	// initialize fetch command
 	fetchCommand := exec.Command(
-		"/usr/local/bin/git",
+		gitBinary,
 		"-C",
 		localWorkDir,
 		"fetch",

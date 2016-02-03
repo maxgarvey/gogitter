@@ -5,12 +5,12 @@ import (
 	"os/exec"
 )
 
-func Add(localWorkDir, fileToAdd string) (string, error) {
+func Add(gitBinary, localWorkDir, fileToAdd string) (string, error) {
 	// fmt.Printf("in Add method.\n") // debug
 
 	// initialize add command
 	addCommand := exec.Command(
-		"/usr/local/bin/git",
+		gitBinary,
 		"-C",
 		localWorkDir,
 		"add",
