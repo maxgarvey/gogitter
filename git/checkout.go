@@ -13,8 +13,8 @@ func Checkout(gitBinary, localWorkDir, branchName string, newBranch bool) (strin
 	if newBranch == true {
 		checkoutCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"checkout",
 			"-b",
 			branchName,
@@ -22,8 +22,8 @@ func Checkout(gitBinary, localWorkDir, branchName string, newBranch bool) (strin
 	} else {
 		checkoutCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"checkout",
 			branchName,
 		)

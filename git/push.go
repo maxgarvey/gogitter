@@ -17,8 +17,8 @@ func Push(gitBinary, localWorkDir, remote, branchName string, dryRun, deleteBoo 
 	if dryRun == true {
 		pushCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"push",
 			"--dry-run",
 			remote,
@@ -27,8 +27,8 @@ func Push(gitBinary, localWorkDir, remote, branchName string, dryRun, deleteBoo 
 	} else {
 		pushCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"push",
 			remote,
 			branchName,

@@ -11,8 +11,8 @@ func Fetch(gitBinary, localWorkDir, branches string) (string, error) {
 	// initialize fetch command
 	fetchCommand := exec.Command(
 		gitBinary,
-		"-C",
-		localWorkDir,
+		"--git-dir",
+		localWorkDir+"/.git",
 		"fetch",
 		branches,
 	)

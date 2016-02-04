@@ -11,8 +11,8 @@ func Commit(gitBinary, localWorkDir, commitMessage string) (string, error) {
 	// initialize commit command
 	commitCommand := exec.Command(
 		gitBinary,
-		"-C",
-		localWorkDir,
+		"--git-dir",
+		localWorkDir+"/.git",
 		"commit",
 		"-m",
 		commitMessage,

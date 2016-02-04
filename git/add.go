@@ -11,10 +11,10 @@ func Add(gitBinary, localWorkDir, fileToAdd string) (string, error) {
 	// initialize add command
 	addCommand := exec.Command(
 		gitBinary,
-		"-C",
-		localWorkDir,
+		"--git-dir",
+		localWorkDir+"/.git",
 		"add",
-		fileToAdd,
+		localWorkDir+"/"+fileToAdd,
 	)
 
 	// perform add, return combined out and error

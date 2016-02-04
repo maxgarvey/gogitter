@@ -13,8 +13,8 @@ func Branch(gitBinary, localWorkDir, branchName string, deleteBranch, newBranch 
 	if deleteBranch == true {
 		branchCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"branch",
 			"-D",
 			branchName,
@@ -22,16 +22,16 @@ func Branch(gitBinary, localWorkDir, branchName string, deleteBranch, newBranch 
 	} else if newBranch == true {
 		branchCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"branch",
 			branchName,
 		)
 	} else {
 		branchCommand = exec.Command(
 			gitBinary,
-			"-C",
-			localWorkDir,
+			"--git-dir",
+			localWorkDir+"/.git",
 			"branch",
 			branchName,
 		)
