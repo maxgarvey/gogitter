@@ -10,12 +10,7 @@ func Clone(gitBinary, url, destinationDirectory string, cleanup bool) (string, e
 
 	// perform cleanup
 	if cleanup {
-		cleanupCommand := exec.Command(
-			"/bin/rm",
-			"-rf",
-			destinationDirectory,
-		)
-		_, err := cleanupCommand.CombinedOutput()
+		err := os.RemoveAll(destinationDirectory)
 		if err != nil {
 			return "", err
 		}
