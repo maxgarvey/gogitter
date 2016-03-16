@@ -14,6 +14,7 @@ func Add(gitBinary, localWorkDir, fileToAdd string) (string, error) {
 		"--git-dir",
 		localWorkDir+"/.git",
 		"add",
+		"-f",
 		localWorkDir+"/"+fileToAdd,
 	)
 
